@@ -78,28 +78,18 @@ http.createServer(function (req, res) {
             // var result = valStr.split('').join(',');
             const valValue = Array.from(q.val).map(Number);
             const orderByValue = q.orderBy;
+            let orderByType = "asc";
             const sortedArray = bubbleSort(valValue);
+            let resultArray = [];
             if (q.orderBy) {
                 if (orderByValue === "desc" || orderByValue === "DESC") {
-                    sortedArray.reverse();
+                    orderByType = orderByValue;
+                    resultArray = sortedArray.reverse();
                 } else if (orderByValue === "asc" || orderByValue === "ASC") {
-                    res.writeHead(200, { "Content-Type": "text/html" });
-                    res.write(
-                        "<h1>" +
-                            "Given val: " +
-                            valValue3 +
-                            "</h1>" +
-                            "<h1>" +
-                            "Sorted val: " +
-                            sortedArray.join(",") +
-                            "</h1>" +
-                            "<h1>" +
-                            "Order: " +
-                            q.orderBy.toUpperCase() +
-                            "</h1>"
-                    );
-                    res.end();
+                    resultArray = sortedArray;
                 }
+            } else {
+                resultArray = sortedArray;
             }
             res.writeHead(200, { "Content-Type": "text/html" });
             res.write(
@@ -109,10 +99,11 @@ http.createServer(function (req, res) {
                     "</h1>" +
                     "<h1>" +
                     "Sorted val: " +
-                    sortedArray.join(",") +
+                    resultArray.join(",") +
                     "</h1>" +
                     "<h1>" +
-                    "Order: ASC" +
+                    "Order: " +
+                    orderByType.toUpperCase() +
                     "</h1>"
             );
             res.end();
