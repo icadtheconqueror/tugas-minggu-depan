@@ -121,6 +121,6 @@ http.createServer(function (req, res) {
     } else {
         res.writeHead(404, { "Content-Type": "text/html" });
         res.write("<h1>" + "Sorry, we cant find anything here" + "</h1>");
-        res.end;
+        res.end();
     }
 }).listen(2032);
