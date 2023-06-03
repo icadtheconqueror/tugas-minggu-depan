@@ -108,12 +108,12 @@ http.createServer(function (req, res) {
             );
             res.end();
         } else {
-            res.writeHead(200, { "Content-Type": "text/html" });
+            res.writeHead(400, { "Content-Type": "text/html" });
             res.write(
                 "<h1>" +
-                    "Please enter ?val (required) and ?orderBy (optional)." +
+                    "Please enter ?val (required) and &orderBy (optional)." +
                     "</h1><h1>" +
-                    "Example: ?val=54234 and &orderBy=asc or &orderBy=desc" +
+                    "Example: ?val=54234&orderBy=asc or ?val=54234&orderBy=desc" +
                     "</h1>"
             );
             res.end();
