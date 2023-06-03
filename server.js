@@ -16,7 +16,7 @@ function bubbleSort(arr) {
     return arr;
 }
 
-http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
     // fs.readFile("howto.html", function (err, data) {
     //     if (err) {
     //         res.writeHead(404, { "Content-Type": "text/html" });
@@ -123,4 +123,10 @@ http.createServer(function (req, res) {
         res.write("<h1>" + "Sorry, we cant find anything here" + "</h1>");
         res.end();
     }
-}).listen(2032);
+});
+
+const port = 2032;
+
+server.listen(port, function () {
+    console.log(`Server berjalan pada http://localhost:${port}`)
+});
